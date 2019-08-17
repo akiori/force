@@ -16,6 +16,8 @@
 
 // by default node mass = 1
 
+// 大佬说了forEach效率高!
+
 class Force {
     constructor(nodes, edges) {
         for (let node of nodes) {
@@ -104,12 +106,12 @@ class Force {
                     }
                 }
             }
-            // 再加中心弹簧? 可选吗
+            // 再加中心弹簧? 是可选的
 
             // 设tick 1秒, vt + 1/2at^2
-
-            node1.velocity[0] += forceSumX;
-            node1.velocity[1] += forceSumY;
+            // 速度是不断累加的, 切记
+            node1.velocity[0] += forceSumX / node1.mass;
+            node1.velocity[1] += forceSumY / node1.mass;
 
             node1.velocity[0] *= 0.6;
             node1.velocity[1] *= 0.6;
@@ -117,7 +119,7 @@ class Force {
             node1.force[0] = forceSumX;
             node1.force[1] = forceSumY;
 
-            // 里面的点位置不能更新 要不然每次都是旧的点与新的点在算力 ！！！
+            // 里面的点位置不能更新 要不然每次都是旧的点与新的点在算力 !!! 但是力是可以存着的, 并且需要存在node对象里
             // node1.position[0] += node1.velocity[0] + 0.5 * forceSumX / node1.mass;
             // node1.position[1] += node1.velocity[1] + 0.5 * forceSumY / node1.mass;
 

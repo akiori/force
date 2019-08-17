@@ -366,6 +366,9 @@
     const forceGraph = new Force(nodes, edges);
 
     const nodeMap = new Map();
+
+    const color = d3.scaleOrdinal(d3.schemeCategory20);
+
     nodes.forEach(node => {
         nodeMap.set(node.id, node.position)
     })
@@ -386,7 +389,8 @@
         .enter().append("circle")
         // .classed("circle", true)
         .attr("r", 5)
-        .style("stroke", "yellow")
+        .attr("fill", d => color(d.group))
+        .style("stroke", "#fff")
         .style("stroke-width", "1.5px")
 
     let cnt = 0;
@@ -426,7 +430,7 @@
             .attr("y2", d => yScale(nodeMap.get(d.target)[1]));
         forceGraph.tick();
 
-        if (cnt < 1500) {
+        if (cnt < 1000) {
             // setTimeout(function () { requestAnimationFrame(draw); }, 0)
             requestAnimationFrame(draw);
         }

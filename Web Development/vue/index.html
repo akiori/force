@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <!-- 这里是component -->
+        <div id="app-7">
+            <ol>
+                <todo-item
+                    v-for="ite in groceryList"
+                    v-bind:todo="ite"
+                    v-bind:key="ite.id"
+                ></todo-item>
+            </ol>
+        </div>
+        <script
+            src="./vue-00.js"
+            type="text/javascript"
+            charset="utf-8"
+        ></script>
+    </body>
+</html>
